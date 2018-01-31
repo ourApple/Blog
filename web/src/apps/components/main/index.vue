@@ -32,13 +32,6 @@
         menus: []
       };
     },
-    created () {
-      if (window.localStorage.length > 0) {
-        var string = window.localStorage.userInfo
-        var userInformation = JSON.parse(string)
-      }
-      // this.getData();
-    },
     computed: {
       ...mapState(['userInfo']),
       userName() {
@@ -48,6 +41,18 @@
           return userInformation.user.userName
         }
       }
+    },
+    created () {
+      if (window.localStorage.length > 0) {
+        var string = window.localStorage.userInfo
+        var userInformation = JSON.parse(string)
+      }
+      if (this.userInfo) {
+        let userInfo = this.userInfo
+      } else {
+        this.$router.replace('/')
+      }
+      // this.getData();
     },
     methods: {
       ...mapActions(['sendUserInfo']),

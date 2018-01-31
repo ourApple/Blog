@@ -67,6 +67,7 @@
             // 请求登录接口
             let res = await login({ userName: this.loginForm.username, passWord: this.loginForm.password });
             if (res.result && res.success) {
+              console.log(res)
               /* 将用户token本地缓存 */
               this.sendUserInfo(res.result.userInfo);
               this.$message({
