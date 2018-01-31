@@ -1,15 +1,15 @@
 <template>
   <div class="login_page fillcontain">
-    <div class="logo"><i class="iconfont icon-home"></i>智慧综合运维平台</span></div>
+    <div class="logo"><i class="iconfont icon-home"></i>BLOG</span></div>
     <transition name="form-fade" mode="in-out">
       <section class="form_contianer" v-show="showLogin">
         <el-form :model="loginForm" :rules="rules" ref="loginForm">
           <el-form-item prop="username">
             <!--icon定义字符串，：icon定义方法-->
-            <el-input v-model="loginForm.username"  auto-complete="off" placeholder="| 请输入用户名" :icon="userNameClass" @focus="handleUserFocus(true)" @blur="handleUserFocus(false)" @keyup.enter.native="submitForm('loginForm')"></el-input>
+            <el-input v-model="loginForm.username"  auto-complete="off" placeholder=" 请输入用户名" @focus="handleUserFocus(true)" @blur="handleUserFocus(false)" @keyup.enter.native="submitForm('loginForm')"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" placeholder="| 请输入密码" v-model="loginForm.password" :icon="passwordClass" @focus="handlePwdFocus(true)" @blur="handlePwdFocus(false)" @keyup.enter.native="submitForm('loginForm')"></el-input>
+            <el-input type="password" placeholder=" 请输入密码" v-model="loginForm.password" @focus="handlePwdFocus(true)" @blur="handlePwdFocus(false)" @keyup.enter.native="submitForm('loginForm')"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button :loading="loading" @click="submitForm('loginForm')" class="submit_btn">登录</el-button>
@@ -59,7 +59,7 @@
       }
     },
     methods: {
-      ...mapActions(['getAdminData', 'saveUserInfo']),
+      ...mapActions(['sendUserInfo']),
       async submitForm (formName) {
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
@@ -68,7 +68,7 @@
             let res = await login({ userName: this.loginForm.username, passWord: this.loginForm.password });
             if (res.result && res.success) {
               /* 将用户token本地缓存 */
-              this.saveUserInfo(res.result.userInfo);
+              this.sendUserInfo(res.result.userInfo);
               this.$message({
                 type: 'success',
                 message: '登录成功'
@@ -119,13 +119,14 @@
 <style lang="less">
   @import '../../../style/mixin';
   .login_page{
-    background: #82b0e087;
+    background:url(./img/loginBg.png);
     background-size: cover;
     background-position: center;
     .logo{
       text-align: center;
-      padding: 30px 0;
+      padding: 130px 0 30px;
       font-size: 30px;
+      color: #fff;
       span{
         display:block;
         font-size:40px;

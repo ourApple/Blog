@@ -32,7 +32,7 @@ const actions = {
     commit('savetabState', tabState);
   },
   /* 保存用户信息 */
-  saveUserInfo ({commit}, userInfo) {
+  sendUserInfo ({commit}, userInfo) {
     try {
       commit('saveUserInfo', userInfo);
     } catch (err) {
