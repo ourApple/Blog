@@ -102,7 +102,7 @@
       }
     },
     watch: {
-      adminInfo: function (newValue) {
+      userInfo: function (newValue) {
         /*
         if (newValue && newValue.user && newValue.user.id) {
           this.$message({
